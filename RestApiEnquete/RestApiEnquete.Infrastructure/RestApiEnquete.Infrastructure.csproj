@@ -6,7 +6,6 @@
 
   <ItemGroup>
     <Folder Include="CrossCutting\" />
-    <Folder Include="Data\Repositorys\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -15,6 +14,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\RestApi.Domain\RestApiEnquete.Domain.csproj" />
+    <ProjectReference Include="..\RestApiEnquete.Domain.Core\RestApiEnquete.Domain.Core.csproj" />
   </ItemGroup>
 
 </Project>

@@ -9,7 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Application", "2 - Appl
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - Domain", "3 - Domain", "{900F0A78-0C69-49F5-9EA0-ED423256B8A4}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 - Infrastruture", "4 - Infrastruture", "{85A1F759-3256-443F-AB45-671AC6A24455}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 - Infrastructure", "4 - Infrastructure", "{85A1F759-3256-443F-AB45-671AC6A24455}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestApiEnquete.API", "RestApiEnquete.API\RestApiEnquete.API.csproj", "{E91712D3-31C5-43C2-837B-C3C1A96317B4}"
 EndProject

@@ -6,5 +6,6 @@ namespace RestApiEnquete.Domain.Entitys
     {
         public string OptionDescription { get; set; }
         public DateTime DateRegistration { get; set; }
+        public int? PooId { get; set; }
     }
 }

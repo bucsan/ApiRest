@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="CrossCutting\" />
+    <Folder Include="CrossCutting\IOC\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -14,6 +14,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\RestApi.Domain\RestApiEnquete.Domain.csproj" />
+    <ProjectReference Include="..\RestApiEnquete.Application\RestApiEnquete.Application.csproj" />
     <ProjectReference Include="..\RestApiEnquete.Domain.Core\RestApiEnquete.Domain.Core.csproj" />
   </ItemGroup>
 

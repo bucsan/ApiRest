@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace RestApiEnquete.Domain.Entitys
 {
@@ -6,6 +7,6 @@ namespace RestApiEnquete.Domain.Entitys
     {
         public string PollDescription { get; set; }
         public DateTime DateRegistration { get; set; }
-        public Option[] Options { get; set; }
+        public IEnumerable<Option> Option { get; set; }
     }
 }

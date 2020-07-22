@@ -1,5 +1,5 @@
 ﻿using RestApiEnquete.Domain.Core.Interfaces.Repositorys;
-using RestApiEnquete.Domain.Core.Services;
+using RestApiEnquete.Domain.Core.Interfaces.Services;
 using System.Collections.Generic;
 
 namespace RestApiEnquete.Domain.Services

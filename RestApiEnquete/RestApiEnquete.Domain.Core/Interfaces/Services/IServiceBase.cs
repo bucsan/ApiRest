@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace RestApiEnquete.Domain.Core.Services
+namespace RestApiEnquete.Domain.Core.Interfaces.Services
 {
     public interface IServiceBase<TEntity> where TEntity : class
     {

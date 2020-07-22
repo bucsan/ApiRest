@@ -5,8 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Dtos\" />
-    <Folder Include="Interfaces\" />
+    <ProjectReference Include="..\RestApiEnquete.Domain.Core\RestApiEnquete.Domain.Core.csproj" />
   </ItemGroup>
 
 </Project>

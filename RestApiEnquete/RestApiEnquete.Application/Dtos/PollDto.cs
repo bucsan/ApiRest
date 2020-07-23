@@ -6,6 +6,7 @@ namespace RestApiEnquete.Application.Dtos
     {
         public int Id { get; set; }
         public string PollDescription { get; set; }
-        public IEnumerable<OptionDto> Option { get; set; }
+        public int? View { get; set; }
+        public virtual IEnumerable<OptionDto> Option { get; set; }
     }
 }

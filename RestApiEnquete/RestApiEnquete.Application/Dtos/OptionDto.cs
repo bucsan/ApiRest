@@ -6,6 +6,6 @@ namespace RestApiEnquete.Application.Dtos
     {
         public int Id { get; set; }
         public string OptionDescription { get; set; }
-        public int? PollId { get; set; }
+        public int Poll_Id { get; set; }
     }
 }

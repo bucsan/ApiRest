@@ -13,7 +13,8 @@ namespace RestApiEnquete.Application.Mappers
             var option = new Option()
             {
                 Id = optionDto.Id,
-                OptionDescription = optionDto.OptionDescription
+                OptionDescription = optionDto.OptionDescription,
+                Poll_Id = optionDto.Poll_Id
             };
 
             return option;
@@ -24,7 +25,8 @@ namespace RestApiEnquete.Application.Mappers
             var optionDto = new OptionDto()
             {
                 Id = option.Id,
-                OptionDescription = option.OptionDescription
+                OptionDescription = option.OptionDescription,
+                Poll_Id = option.Poll_Id
             };
 
             return optionDto;
@@ -35,7 +37,8 @@ namespace RestApiEnquete.Application.Mappers
             var dto = options.Select(c => new OptionDto
             {
                 Id = c.Id,
-                OptionDescription = c.OptionDescription
+                OptionDescription = c.OptionDescription,
+                Poll_Id = c.Poll_Id
             });
 
             return dto;

@@ -14,6 +14,7 @@ namespace RestApiEnquete.Application.Mappers
             {
                 Id = pollDto.Id,
                 PollDescription = pollDto.PollDescription,
+                View = pollDto.View,
                 Option = (IEnumerable<Option>)pollDto.Option
             };
 
@@ -26,6 +27,7 @@ namespace RestApiEnquete.Application.Mappers
             {
                 Id = poll.Id,
                 PollDescription = poll.PollDescription,
+                View = poll.View,
                 Option = (IEnumerable<OptionDto>)poll.Option
             };
 
@@ -38,6 +40,7 @@ namespace RestApiEnquete.Application.Mappers
             {
                 Id = c.Id,
                 PollDescription = c.PollDescription,
+                View = c.View,
                 Option = (IEnumerable<OptionDto>)c.Option
             });
 

@@ -17,6 +17,7 @@ namespace RestApiEnquete.Infrastructure.Data
 
         public DbSet<Poll> Polls { get; set; }
         public DbSet<Option> Options { get; set; }
+        public DbSet<Vote> Votes { get; set; }
 
         public override int SaveChanges()
         {

@@ -7,7 +7,8 @@ namespace RestApiEnquete.Infrastructure.Data.Repositorys
     {
         private readonly SqlContext sqlContext;
 
-        public RepositoryOption(SqlContext sqlContext) : base(sqlContext)
+        public RepositoryOption(SqlContext sqlContext)
+            : base(sqlContext)
         {
             this.sqlContext = sqlContext;
         }

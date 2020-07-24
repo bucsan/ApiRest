@@ -10,79 +10,86 @@ namespace RestApiEnquete.API.Controllers
     [ApiController]
     public class PollController : ControllerBase
     {
-        private readonly IApplicationServicePoll applicationServicePoll;
 
-        public PollController(IApplicationServicePoll applicationServicePoll)
+        private readonly IApplicationServicePoll applicationServiceCliente;
+
+
+        public PollController(IApplicationServicePoll applicationServiceCliente)
         {
-            this.applicationServicePoll = applicationServicePoll;
+            this.applicationServiceCliente = applicationServiceCliente;
         }
-
         // GET api/values
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
-            return Ok(applicationServicePoll.GetAll());
+            return Ok(applicationServiceCliente.GetAll());
         }
 
         // GET api/values/5
         [HttpGet("{id}")]
         public ActionResult<string> Get(int id)
         {
-            return Ok(applicationServicePoll.GetById(id));
+            return Ok(applicationServiceCliente.GetById(id));
         }
 
         // POST api/values
         [HttpPost]
-        public ActionResult Post([FromBody] PollDto pollDto)
+        public ActionResult Post([FromBody] PollDto clienteDTO)
         {
             try
             {
-                if (pollDto == null)
+                if (clienteDTO == null)
                     return NotFound();
 
-                applicationServicePoll.Add(pollDto);
-                return Ok("Enquete cadastrada com sucesso!");
+                applicationServiceCliente.Add(clienteDTO);
+                return Ok("Cliente Cadastrado com sucesso!");
             }
             catch (Exception ex)
             {
+
                 throw ex;
             }
+
+
         }
 
         // PUT api/values/5
         [HttpPut]
-        public ActionResult Put([FromBody] PollDto pollDto)
+        public ActionResult Put([FromBody] PollDto clienteDTO)
         {
             try
             {
-                if (pollDto == null)
+                if (clienteDTO == null)
                     return NotFound();
 
-                applicationServicePoll.Update(pollDto);
-                return Ok("Enquete atualizada com sucesso!");
+                applicationServiceCliente.Update(clienteDTO);
+                return Ok("Cliente Atualizado com sucesso!");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+
+                throw;
             }
         }
 
         // DELETE api/values/5
         [HttpDelete()]
-        public ActionResult Delete([FromBody] PollDto pollDto)
+        public ActionResult Delete([FromBody] PollDto clienteDTO)
         {
             try
             {
-                if (pollDto == null)
+                if (clienteDTO == null)
                     return NotFound();
 
-                applicationServicePoll.Remove(pollDto);
-                return Ok("Enquete removida com sucesso!");
+                applicationServiceCliente.Remove(clienteDTO);
+                return Ok("Cliente Removido com sucesso!");
             }
             catch (Exception ex)
             {
+
                 throw ex;
             }
+
         }
     }
 }

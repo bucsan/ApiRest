@@ -2,10 +2,11 @@
 
 namespace RestApiEnquete.Domain.Entitys
 {
-    public class Vote : Base
+    public class Option : Base
     {
+        public int Poll_Id { get; set; }
+        public string OptionDescription { get; set; }
         public int Qty { get; set; }
         public DateTime DateRegistration { get; set; }
-        public int Option_Id { get; set; }
     }
 }

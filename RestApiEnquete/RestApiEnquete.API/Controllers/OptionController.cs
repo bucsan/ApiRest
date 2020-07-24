@@ -10,78 +10,85 @@ namespace RestApiEnquete.API.Controllers
     [ApiController]
     public class OptionController : ControllerBase
     {
-        private readonly IApplicationServiceOption applicationServiceOption;
+        private readonly IApplicationServiceOption applicationServiceProduto;
 
-        public OptionController(IApplicationServiceOption applicationServiceOption)
+        public OptionController(IApplicationServiceOption applicationServiceProduto)
         {
-            this.applicationServiceOption = applicationServiceOption;
+            this.applicationServiceProduto = applicationServiceProduto;
         }
 
         // GET api/values
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
-            return Ok(applicationServiceOption.GetAll());
+            return Ok(applicationServiceProduto.GetAll());
         }
 
-        // GET api/values/5
+        // GET api/values/5\
         [HttpGet("{id}")]
         public ActionResult<string> Get(int id)
         {
-            return Ok(applicationServiceOption.GetById(id));
+            return Ok(applicationServiceProduto.GetById(id));
         }
 
         // POST api/values
         [HttpPost]
-        public ActionResult Post([FromBody] OptionDto optionDto)
+        public ActionResult Post([FromBody] OptionDto produtoDTO)
         {
             try
             {
-                if (optionDto == null)
+                if (produtoDTO == null)
                     return NotFound();
 
-                applicationServiceOption.Add(optionDto);
-                return Ok("Opção cadastrada com sucesso!");
+
+                applicationServiceProduto.Add(produtoDTO);
+                return Ok("O produto foi cadastrado com sucesso");
             }
             catch (Exception ex)
             {
+
                 throw ex;
             }
         }
 
         // PUT api/values/5
         [HttpPut]
-        public ActionResult Put([FromBody] OptionDto optionDto)
+        public ActionResult Put([FromBody] OptionDto produtoDTO)
         {
+
             try
             {
-                if (optionDto == null)
+                if (produtoDTO == null)
                     return NotFound();
 
-                applicationServiceOption.Update(optionDto);
-                return Ok("Opção atualizada com sucesso!");
+                applicationServiceProduto.Update(produtoDTO);
+                return Ok("O produto foi atualizado com sucesso!");
+
             }
             catch (Exception ex)
             {
+
                 throw ex;
             }
         }
 
         // DELETE api/values/5
         [HttpDelete()]
-        public ActionResult Delete([FromBody] OptionDto optionDto)
+        public ActionResult Delete([FromBody] OptionDto produtoDTO)
         {
             try
             {
-                if (optionDto == null)
+                if (produtoDTO == null)
                     return NotFound();
 
-                applicationServiceOption.Remove(optionDto);
-                return Ok("Opção removida com sucesso!");
+                applicationServiceProduto.Remove(produtoDTO);
+                return Ok("O produto foi removido com sucesso!");
+
             }
             catch (Exception ex)
             {
-                throw ex; 
+
+                throw ex;
             }
         }
     }

@@ -9,7 +9,6 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using RestApiEnquete.Infrastructure.CrossCutting.IOC;
 using RestApiEnquete.Infrastructure.Data;
-using System.Text.Json;
 
 namespace RestApiEnquete.API
 {
@@ -27,19 +26,15 @@ namespace RestApiEnquete.API
         {
             var connection = Configuration["SqlConnection:SqlConnectionString"];
             services.AddDbContext<SqlContext>(options => options.UseSqlServer(connection));
-            services.AddControllers().AddJsonOptions(options =>
-            {
-                options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase; ;
-            });
+            services.AddControllers();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "API Enquete", Version = "V1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "API Rest Enquete", Version = "v1" });
             });
         }
 
-        // Configurando a injeção de dependência
-        public void ConfigurationContainer(ContainerBuilder builder)
+        public void ConfigureContainer(ContainerBuilder builder) 
         {
             builder.RegisterModule(new ModuleIOC());
         }
@@ -50,24 +45,19 @@ namespace RestApiEnquete.API
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-            }            
+            }
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "API Rest Enquete");
+            });
 
             app.UseHttpsRedirection();
 
             app.UseRouting();
 
             app.UseAuthorization();
-
-            app.UseSwagger();
-
-            app.UseSwaggerUI(c =>
-            {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "API Enquete");
-                c.OAuthClientId("Swagger");
-                c.OAuthClientSecret("swagger");
-                c.OAuthAppName("API Enquete");
-                c.OAuthUseBasicAuthenticationWithAccessCodeGrant();
-            });
 
             app.UseEndpoints(endpoints =>
             {

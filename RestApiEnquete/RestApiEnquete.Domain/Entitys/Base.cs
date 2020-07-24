@@ -1,5 +1,4 @@
-﻿
-namespace RestApiEnquete.Domain.Entitys
+﻿namespace RestApiEnquete.Domain.Entitys
 {
     public class Base
     {

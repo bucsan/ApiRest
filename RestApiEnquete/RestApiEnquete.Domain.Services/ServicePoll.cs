@@ -6,11 +6,12 @@ namespace RestApiEnquete.Domain.Services
 {
     public class ServicePoll : ServiceBase<Poll>, IServicePoll
     {
-        private readonly IRepositoryPoll repositoryPoll;
+        private readonly IRepositoryPoll repositoryCliente;
 
-        public ServicePoll(IRepositoryPoll repositoryPoll) : base(repositoryPoll)
+        public ServicePoll(IRepositoryPoll repositoryCliente)
+            : base(repositoryCliente)
         {
-            this.repositoryPoll = repositoryPoll;
+            this.repositoryCliente = repositoryCliente;
         }
     }
 }

@@ -1,50 +1,54 @@
-﻿using RestApiEnquete.Application.Dtos;
+﻿using AutoMapper;
+using RestApiEnquete.Application.Dtos;
 using RestApiEnquete.Application.Interfaces;
-using RestApiEnquete.Application.Interfaces.Mappers;
 using RestApiEnquete.Domain.Core.Interfaces.Services;
+using RestApiEnquete.Domain.Entitys;
 using System.Collections.Generic;
 
 namespace RestApiEnquete.Application
 {
     public class ApplicationServicePoll : IApplicationServicePoll
     {
-        private readonly IServicePoll servicePoll;
-        private readonly IMapperPoll mapperPoll;
-
-        public ApplicationServicePoll(IServicePoll servicePoll, IMapperPoll mapperPoll)
+        private readonly IServicePoll serviceCliente;
+        private readonly IMapper mapper;
+        public ApplicationServicePoll(IServicePoll serviceCliente
+                                       , IMapper mapper)
         {
-            this.servicePoll = servicePoll;
-            this.mapperPoll = mapperPoll;
+            this.serviceCliente = serviceCliente;
+            this.mapper = mapper;
         }
-
-        public void Add(PollDto pollDto)
+        public void Add(PollDto clienteDto)
         {
-            var poll = mapperPoll.MapperDtoToEntity(pollDto);
-            servicePoll.Add(poll);
+            var cliente = mapper.Map<Poll>(clienteDto);
+            serviceCliente.Add(cliente);
         }
 
         public IEnumerable<PollDto> GetAll()
         {
-            var polls = servicePoll.GetAll();
-            return mapperPoll.MapperListPollDto(polls);
+            var clientes = serviceCliente.GetAll();
+            var clientesDto = mapper.Map<IEnumerable<PollDto>>(clientes);
+
+            return clientesDto;
         }
 
         public PollDto GetById(int id)
         {
-            var poll = servicePoll.GetById(id);
-            return mapperPoll.MapperEntityToDto(poll);
+            var cliente = serviceCliente.GetById(id);
+            var clienteDto = mapper.Map<PollDto>(cliente);
+
+            return clienteDto;
         }
 
-        public void Remove(PollDto pollDto)
+        public void Remove(PollDto clienteDto)
         {
-            var poll = mapperPoll.MapperDtoToEntity(pollDto);
-            servicePoll.Remove(poll);
+            var cliente = mapper.Map<Poll>(clienteDto);
+            serviceCliente.Remove(cliente);
         }
 
-        public void Update(PollDto pollDto)
+        public void Update(PollDto clienteDto)
         {
-            var poll = mapperPoll.MapperDtoToEntity(pollDto);
-            servicePoll.Update(poll);
+            var cliente = mapper.Map<Poll>(clienteDto);
+            serviceCliente.Update(cliente);
         }
     }
 }

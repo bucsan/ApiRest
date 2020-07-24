@@ -1,50 +1,54 @@
-﻿using RestApiEnquete.Application.Dtos;
+﻿using AutoMapper;
+using RestApiEnquete.Application.Dtos;
 using RestApiEnquete.Application.Interfaces;
-using RestApiEnquete.Application.Interfaces.Mappers;
 using RestApiEnquete.Domain.Core.Interfaces.Services;
+using RestApiEnquete.Domain.Entitys;
 using System.Collections.Generic;
 
 namespace RestApiEnquete.Application
 {
     public class ApplicationServiceOption : IApplicationServiceOption
     {
-        private readonly IServiceOption serviceOption;
-        private readonly IMapperOption mapperOption;
+        private readonly IServiceOption serviceProduto;
+        private readonly IMapper mapper;
 
-        public ApplicationServiceOption(IServiceOption serviceOption, IMapperOption mapperOption)
+        public ApplicationServiceOption(IServiceOption serviceProduto
+                                        , IMapper mapper)
         {
-            this.serviceOption = serviceOption;
-            this.mapperOption = mapperOption;
+            this.serviceProduto = serviceProduto;
+            this.mapper = mapper;
         }
 
-        public void Add(OptionDto optionDto)
+        public void Add(OptionDto produtoDto)
         {
-            var option = mapperOption.MapperDtoToEntity(optionDto);
-            serviceOption.Add(option);
+            var produto = mapper.Map<Option>(produtoDto);
+            serviceProduto.Add(produto);
         }
 
         public IEnumerable<OptionDto> GetAll()
         {
-            var options = serviceOption.GetAll();
-            return mapperOption.MapperListOptionDto(options);
+            var produtos = serviceProduto.GetAll();
+            var produtosDto = mapper.Map<IEnumerable<OptionDto>>(produtos);
+            return produtosDto;
         }
 
         public OptionDto GetById(int id)
         {
-            var option = serviceOption.GetById(id);
-            return mapperOption.MapperEntityToDto(option);
+            var produto = serviceProduto.GetById(id);
+            var produtoDto = mapper.Map<OptionDto>(produto);
+            return produtoDto;
         }
 
-        public void Remove(OptionDto optionDto)
+        public void Remove(OptionDto produtoDto)
         {
-            var option = mapperOption.MapperDtoToEntity(optionDto);
-            serviceOption.Remove(option);
+            var produto = mapper.Map<Option>(produtoDto);
+            serviceProduto.Remove(produto);
         }
 
-        public void Update(OptionDto optionDto)
+        public void Update(OptionDto produtoDto)
         {
-            var option = mapperOption.MapperDtoToEntity(optionDto);
-            serviceOption.Update(option);
+            var produto = mapper.Map<Option>(produtoDto);
+            serviceProduto.Update(produto);
         }
     }
 }

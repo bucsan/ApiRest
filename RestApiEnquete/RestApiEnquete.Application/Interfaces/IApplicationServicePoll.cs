@@ -5,11 +5,11 @@ namespace RestApiEnquete.Application.Interfaces
 {
     public interface IApplicationServicePoll
     {
-        void Add(PollDto pollDto);
+        void Add(PollDto clienteDto);
 
-        void Update(PollDto pollDto);
+        void Update(PollDto clienteDto);
 
-        void Remove(PollDto pollDto);
+        void Remove(PollDto clienteDto);
 
         IEnumerable<PollDto> GetAll();
 

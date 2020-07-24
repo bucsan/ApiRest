@@ -5,14 +5,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Autofac" Version="5.2.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.6" />
+    <PackageReference Include="Autofac" Version="5.1.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.3" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\RestApi.Domain\RestApiEnquete.Domain.csproj" />
     <ProjectReference Include="..\RestApiEnquete.Application\RestApiEnquete.Application.csproj" />
     <ProjectReference Include="..\RestApiEnquete.Domain.Core\RestApiEnquete.Domain.Core.csproj" />
+    <ProjectReference Include="..\RestApiEnquete.Domain.Services\RestApiEnquete.Domain.Services.csproj" />
+    <ProjectReference Include="..\RestApiEnquete.Domain\RestApiEnquete.Domain.csproj" />
   </ItemGroup>
 
 </Project>

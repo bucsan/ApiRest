@@ -5,12 +5,12 @@ namespace RestApiEnquete.Infrastructure.Data.Repositorys
 {
     public class RepositoryPoll : RepositoryBase<Poll>, IRepositoryPoll
     {
-        private readonly SqlContext sqlContext;
+        private readonly SqlContext _sqlContext;
 
         public RepositoryPoll(SqlContext sqlContext)
             : base(sqlContext)
         {
-            this.sqlContext = sqlContext;
+            _sqlContext = sqlContext;
         }
     }
 }

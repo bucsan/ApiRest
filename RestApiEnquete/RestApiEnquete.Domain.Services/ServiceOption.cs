@@ -6,12 +6,12 @@ namespace RestApiEnquete.Domain.Services
 {
     public class ServiceOption : ServiceBase<Option>, IServiceOption
     {
-        private readonly IRepositoryOption repositoryProduto;
+        private readonly IRepositoryOption _repositoryOption;
 
-        public ServiceOption(IRepositoryOption repositoryProduto)
-            : base(repositoryProduto)
+        public ServiceOption(IRepositoryOption repositoryOption)
+            : base(repositoryOption)
         {
-            this.repositoryProduto = repositoryProduto;
+            _repositoryOption = repositoryOption;
         }
     }
 }

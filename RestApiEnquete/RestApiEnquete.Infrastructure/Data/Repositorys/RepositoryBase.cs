@@ -8,19 +8,19 @@ namespace RestApiEnquete.Infrastructure.Data.Repositorys
 {
     public class RepositoryBase<TEntity> : IRepositoryBase<TEntity> where TEntity : class
     {
-        private readonly SqlContext sqlContext;
+        private readonly SqlContext _sqlContext;
 
         public RepositoryBase(SqlContext sqlContext)
         {
-            this.sqlContext = sqlContext;
+            _sqlContext = sqlContext;
         }
 
         public void Add(TEntity obj)
         {
             try
             {
-                sqlContext.Set<TEntity>().Add(obj);
-                sqlContext.SaveChanges();
+                _sqlContext.Set<TEntity>().Add(obj);
+                _sqlContext.SaveChanges();
             }
             catch (Exception ex)
             {
@@ -30,20 +30,20 @@ namespace RestApiEnquete.Infrastructure.Data.Repositorys
 
         public IEnumerable<TEntity> GetAll()
         {
-            return sqlContext.Set<TEntity>().ToList();
+            return _sqlContext.Set<TEntity>().ToList();
         }
 
         public TEntity GetById(int id)
         {
-            return sqlContext.Set<TEntity>().Find(id);
+            return _sqlContext.Set<TEntity>().Find(id);
         }
 
         public void Remove(TEntity obj)
         {
             try
             {
-                sqlContext.Set<TEntity>().Remove(obj);
-                sqlContext.SaveChanges();
+                _sqlContext.Set<TEntity>().Remove(obj);
+                _sqlContext.SaveChanges();
             }
             catch (Exception ex)
             {
@@ -55,8 +55,8 @@ namespace RestApiEnquete.Infrastructure.Data.Repositorys
         {
             try
             {
-                sqlContext.Entry(obj).State = EntityState.Modified;
-                sqlContext.SaveChanges();
+                _sqlContext.Entry(obj).State = EntityState.Modified;
+                _sqlContext.SaveChanges();
             }
             catch (Exception ex)
             {

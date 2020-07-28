@@ -9,46 +9,45 @@ namespace RestApiEnquete.Application
 {
     public class ApplicationServiceOption : IApplicationServiceOption
     {
-        private readonly IServiceOption serviceProduto;
-        private readonly IMapper mapper;
+        private readonly IServiceOption _serviceOption;
+        private readonly IMapper _mapper;
 
-        public ApplicationServiceOption(IServiceOption serviceProduto
-                                        , IMapper mapper)
+        public ApplicationServiceOption(IServiceOption serviceOption, IMapper mapper)
         {
-            this.serviceProduto = serviceProduto;
-            this.mapper = mapper;
+            _serviceOption = serviceOption;
+            _mapper = mapper;
         }
 
-        public void Add(OptionDto produtoDto)
+        public void Add(OptionDto optionDto)
         {
-            var produto = mapper.Map<Option>(produtoDto);
-            serviceProduto.Add(produto);
+            var option = _mapper.Map<Option>(optionDto);
+            _serviceOption.Add(option);
         }
 
         public IEnumerable<OptionDto> GetAll()
         {
-            var produtos = serviceProduto.GetAll();
-            var produtosDto = mapper.Map<IEnumerable<OptionDto>>(produtos);
-            return produtosDto;
+            var options = _serviceOption.GetAll();
+            var optionsDto = _mapper.Map<IEnumerable<OptionDto>>(options);
+            return optionsDto;
         }
 
         public OptionDto GetById(int id)
         {
-            var produto = serviceProduto.GetById(id);
-            var produtoDto = mapper.Map<OptionDto>(produto);
-            return produtoDto;
+            var option = _serviceOption.GetById(id);
+            var optionDto = _mapper.Map<OptionDto>(option);
+            return optionDto;
         }
 
-        public void Remove(OptionDto produtoDto)
+        public void Remove(OptionDto optionDto)
         {
-            var produto = mapper.Map<Option>(produtoDto);
-            serviceProduto.Remove(produto);
+            var option = _mapper.Map<Option>(optionDto);
+            _serviceOption.Remove(option);
         }
 
-        public void Update(OptionDto produtoDto)
+        public void Update(OptionDto optionDto)
         {
-            var produto = mapper.Map<Option>(produtoDto);
-            serviceProduto.Update(produto);
+            var option = _mapper.Map<Option>(optionDto);
+            _serviceOption.Update(option);
         }
     }
 }

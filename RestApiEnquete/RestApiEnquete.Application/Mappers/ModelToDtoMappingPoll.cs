@@ -16,7 +16,7 @@ namespace RestApiEnquete.Application.Mappers
         {
             CreateMap<Poll, PollDto>()
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(x => x.Id))
-                .ForMember(dest => dest.OptionDescription, opt => opt.MapFrom(x => x.OptionDescription))
+                .ForMember(dest => dest.PollDescription, opt => opt.MapFrom(x => x.OptionDescription))
                 .ForMember(dest => dest.View, opt => opt.MapFrom(x => x.View))
                 .ForMember(dest => dest.DateRegistration, opt => opt.Ignore())
                 .ForMember(dest => dest.Option, opt => opt.MapFrom(x => x.Option));

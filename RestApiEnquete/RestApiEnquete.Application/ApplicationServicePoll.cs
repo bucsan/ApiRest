@@ -1,54 +1,72 @@
 ﻿using AutoMapper;
 using RestApiEnquete.Application.Dtos;
 using RestApiEnquete.Application.Interfaces;
+using RestApiEnquete.Application.ViewModels;
 using RestApiEnquete.Domain.Core.Interfaces.Services;
 using RestApiEnquete.Domain.Entitys;
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.InteropServices.ComTypes;
 
 namespace RestApiEnquete.Application
 {
     public class ApplicationServicePoll : IApplicationServicePoll
     {
-        private readonly IServicePoll serviceCliente;
-        private readonly IMapper mapper;
-        public ApplicationServicePoll(IServicePoll serviceCliente
-                                       , IMapper mapper)
+        private readonly IServicePoll _servicePoll;
+        private readonly IMapper _mapper;
+        public ApplicationServicePoll(IServicePoll servicePoll , IMapper mapper)
         {
-            this.serviceCliente = serviceCliente;
-            this.mapper = mapper;
+            _servicePoll = servicePoll;
+            _mapper = mapper;
         }
-        public void Add(PollDto clienteDto)
+        public void Add(PollDto pollDto)
         {
-            var cliente = mapper.Map<Poll>(clienteDto);
-            serviceCliente.Add(cliente);
+            var poll = _mapper.Map<Poll>(pollDto);
+            _servicePoll.Add(poll);
         }
 
         public IEnumerable<PollDto> GetAll()
         {
-            var clientes = serviceCliente.GetAll();
-            var clientesDto = mapper.Map<IEnumerable<PollDto>>(clientes);
+            var polls = _servicePoll.GetAll();
+            var pollsDto = _mapper.Map<IEnumerable<PollDto>>(polls);
 
-            return clientesDto;
+            return pollsDto;
         }
 
         public PollDto GetById(int id)
         {
-            var cliente = serviceCliente.GetById(id);
-            var clienteDto = mapper.Map<PollDto>(cliente);
+            var poll = _servicePoll.GetById(id);
+            var pollDto = _mapper.Map<PollDto>(poll);
 
-            return clienteDto;
+            return pollDto;
         }
 
-        public void Remove(PollDto clienteDto)
+        public PollGetByIdViewModelResponse GetByIdResponse(int id)
         {
-            var cliente = mapper.Map<Poll>(clienteDto);
-            serviceCliente.Remove(cliente);
+            var poll = _servicePoll.GetById(id);
+            var pollDto = _mapper.Map<PollDto>(poll);
+
+            if (pollDto == null) return null;
+
+            return new PollGetByIdViewModelResponse
+            {
+                Poll_Id = pollDto.Id,
+                Poll_Description = pollDto.PollDescription,
+                Options = pollDto.Option.Select(x => new PollGetByIdViewModelResponseOption { Option_Id = x.Id, Option_Description = x.OptionDescription }).ToList()
+            };
         }
 
-        public void Update(PollDto clienteDto)
+        public void Remove(PollDto pollDto)
         {
-            var cliente = mapper.Map<Poll>(clienteDto);
-            serviceCliente.Update(cliente);
+            var poll = _mapper.Map<Poll>(pollDto);
+            _servicePoll.Remove(poll);
+        }
+
+        public void Update(PollDto pollDto)
+        {
+            var poll = _mapper.Map<Poll>(pollDto);
+            _servicePoll.Update(poll);
         }
     }
 }

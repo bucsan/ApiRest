@@ -5,11 +5,11 @@ namespace RestApiEnquete.Application.Interfaces
 {
     public interface IApplicationServiceOption
     {
-        void Add(OptionDto produtoDto);
+        void Add(OptionDto optionDto);
 
-        void Update(OptionDto produtoDto);
+        void Update(OptionDto optionDto);
 
-        void Remove(OptionDto produtoDto);
+        void Remove(OptionDto optionDto);
 
         IEnumerable<OptionDto> GetAll();
 
